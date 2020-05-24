@@ -21,6 +21,7 @@
         android:fontFamily="sans-serif-light"
         android:hint="@string/hint_dob"
         android:inputType="textAutoComplete"
+        android:focusable="false"
         android:layout_margin="@dimen/big_padding"
         android:textSize="18sp" />
     <EditText
@@ -41,6 +42,7 @@
         android:fontFamily="sans-serif-light"
         android:hint="@string/hint_appointment_date"
         android:inputType="textAutoComplete"
+        android:focusable="false"
         android:layout_margin="@dimen/big_padding"
         android:textSize="18sp" />
 
