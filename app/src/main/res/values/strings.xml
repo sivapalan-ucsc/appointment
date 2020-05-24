@@ -1,0 +1,15 @@
+<resources>
+    <string name="app_name">Appointments</string>
+    <string name="action_settings">Settings</string>
+    <string name="hint_name">Patient Name</string>
+    <string name="hint_dob">Date of birth</string>
+    <string name="hint_gender">Gender</string>
+    <string name="hint_appointment_date">Appointment date</string>
+    <string name="button_save">Save</string>
+    <string name="empty_not_saved">Please enter all fields to add appointment  </string>
+    <string name="add_word">Add Appointment</string>
+    <string-array name="gender">
+        <item>Male</item>
+        <item>Female</item>
+    </string-array>
+</resources>
