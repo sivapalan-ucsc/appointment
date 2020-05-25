@@ -8,7 +8,7 @@ import androidx.room.*
 @TypeConverters(DateTypeConverter::class)
 interface AppointmentDAO {
 
-    @Query("SELECT * from patient_appointment ORDER BY `appointmentDate ` ASC, id ASC")
+    @Query("SELECT * from patient_appointment ORDER BY `appointmentDate ` ASC, id DESC")
     fun getAlphabetizedWords(): LiveData<List<Appointment>>
 
     @Insert(onConflict = OnConflictStrategy.IGNORE)

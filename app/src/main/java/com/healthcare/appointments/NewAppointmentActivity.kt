@@ -6,10 +6,7 @@ import android.app.Activity
 import android.app.DatePickerDialog
 import android.content.Intent
 import android.text.TextUtils
-import android.widget.Button
-import android.widget.DatePicker
-import android.widget.EditText
-import android.widget.Toast
+import android.widget.*
 import java.text.SimpleDateFormat
 import java.util.*
 
@@ -17,7 +14,7 @@ class NewAppointmentActivity : AppCompatActivity() {
 
     private lateinit var editNameView: EditText
     private lateinit var editDobView: EditText
-    private lateinit var editGenderView: EditText
+    private lateinit var editGenderView: AutoCompleteTextView
     private lateinit var editAppointmentDateView: EditText
 
     public override fun onCreate(savedInstanceState: Bundle?) {
@@ -25,11 +22,19 @@ class NewAppointmentActivity : AppCompatActivity() {
         setContentView(R.layout.activity_new_appointment)
         editNameView = findViewById(R.id.edit_name)
         editDobView = findViewById(R.id.edit_dob)
-        editGenderView = findViewById(R.id.edit_gender)
+        editGenderView = findViewById<AutoCompleteTextView>(R.id.edit_gender)
         editAppointmentDateView = findViewById(R.id.edit_appointment_date)
         val datePicker:DatePickerDialog = this.setDatePicker(editAppointmentDateView)
         datePicker.getDatePicker().setMinDate(System.currentTimeMillis() - 1000);
         this.setDatePicker(editDobView)
+
+        val gender = resources.getStringArray(R.array.gender)
+        val adapter = ArrayAdapter(this,
+            android.R.layout.simple_spinner_item, gender)
+        editGenderView.setAdapter(adapter)
+        editGenderView.setOnClickListener {
+            editGenderView.showDropDown()
+        }
 
         val button = findViewById<Button>(R.id.button_save)
         button.setOnClickListener {
