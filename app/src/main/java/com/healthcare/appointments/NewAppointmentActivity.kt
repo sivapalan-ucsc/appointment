@@ -27,8 +27,8 @@ class NewAppointmentActivity : AppCompatActivity() {
         editDobView = findViewById(R.id.edit_dob)
         editGenderView = findViewById(R.id.edit_gender)
         editAppointmentDateView = findViewById(R.id.edit_appointment_date)
-
-        this.setDatePicker(editAppointmentDateView)
+        val datePicker:DatePickerDialog = this.setDatePicker(editAppointmentDateView)
+        datePicker.getDatePicker().setMinDate(System.currentTimeMillis() - 1000);
         this.setDatePicker(editDobView)
 
         val button = findViewById<Button>(R.id.button_save)
@@ -55,7 +55,7 @@ class NewAppointmentActivity : AppCompatActivity() {
 
         }
     }
-    private fun setDatePicker(dateEditText: EditText) {
+    private fun setDatePicker(dateEditText: EditText):DatePickerDialog {
 
         val myCalendar = Calendar.getInstance()
 
@@ -65,12 +65,14 @@ class NewAppointmentActivity : AppCompatActivity() {
             myCalendar.set(Calendar.DAY_OF_MONTH, dayOfMonth)
             updateLabel(myCalendar, dateEditText)
         }
+        val datePicker = DatePickerDialog(this@NewAppointmentActivity, datePickerOnDataSetListener, myCalendar
+            .get(Calendar.YEAR), myCalendar.get(Calendar.MONTH),
+            myCalendar.get(Calendar.DAY_OF_MONTH))
 
         dateEditText.setOnClickListener {
-            DatePickerDialog(this@NewAppointmentActivity, datePickerOnDataSetListener, myCalendar
-                .get(Calendar.YEAR), myCalendar.get(Calendar.MONTH),
-                myCalendar.get(Calendar.DAY_OF_MONTH)).show()
+                datePicker.show()
         }
+        return datePicker
     }
 
     private fun updateLabel(myCalendar: Calendar, dateEditText: EditText) {
